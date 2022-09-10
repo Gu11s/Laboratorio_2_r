@@ -52,5 +52,14 @@ flights %>%
 #2.2
 flights_selected <- flights %>%
   select(year:day, hour, origin, dest, tailnum, carrier, arr_delay, dep_delay)
+
+flights_selected
+```
+```{r}
+#2.3
+flights_selected %>%
+  inner_join(airlines, by = "carrier") %>%
+  select(-origin, -dest) %>%
+  mutate(tot_delay = arr_delay + dep_delay)
 ```
 
