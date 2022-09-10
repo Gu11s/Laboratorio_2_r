@@ -93,4 +93,9 @@ flights_airports <- airports %>%
 
 flights_airports
 ```
+```{r}
+#2.7
+ggplot(flights_airports, aes(x = lon, y = lat, color = delay, size = delay)) + 
+  geom_point()
+```
 
