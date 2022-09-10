@@ -5,9 +5,9 @@ Gustavo Javier García Salas Rodríguez
 install.packages("nycflights13")
 
 library("nycflights13")
+library("dplyr")
 library("tidyverse")
 
-nycflights13::flights
 View(nycflights13::flights)
 ```
 ```{r}
@@ -77,5 +77,20 @@ precip_delay
 
 ggplot(precip_delay, aes(x = precip, y = delay)) +
   geom_point()
+```
+```{r}
+#2.6
+
+new_flights <- flights %>%
+  filter(year == 2013, month == 5, day == 10) %>%
+  group_by(dest) %>% 
+  summarize(delay = mean(arr_delay, na.rm = TRUE))
+
+new_flights
+
+flights_airports <- airports %>%
+  inner_join(new_flights, by = c ("faa" = "dest"))
+
+flights_airports
 ```
 
