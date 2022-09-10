@@ -5,8 +5,22 @@ Gustavo Javier García Salas Rodríguez
 install.packages("nycflights13")
 
 library("nycflights13")
+library("tidyverse")
 
 nycflights13::flights
 View(nycflights13::flights)
+```
+```{r}
+#1
+
+flights <- nycflights13::flights
+planes <- nycflights13::planes
+airlines <- nycflights13::airlines
+airports <- nycflights13::airports
+weather <- nycflights13::weather
+
+flights %>%
+  inner_join(planes, by = "tailnum", suffix = c("_flights", "_planes")) %>%
+  inner_join(airlines, by = "carrier")
 ```
 
